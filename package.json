@@ -4,5 +4,8 @@
   "description": "Jobber Challange Codes",
   "repository": "git@github.com:oliverigor/Jobber-challenge.git",
   "author": "Igor Martins <m.oliverunb@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
 }
