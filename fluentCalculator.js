@@ -22,7 +22,27 @@ var FluentCalc = function() {
     'ten'
   ];
 
-  
+  Object.keys(calcOperators).forEach(operator => {
+    var operatorFunction = calcOperators[operator];
+    var operatorObject = {};
+
+    numbers.forEach((num, index) => {
+      Object.defineProperty(operatorObject, num, {
+        get: () => (initialValue = operatorFunction(initialValue, index))
+      });
+    });
+
+    Number.prototype[operator] = operatorObject;
+  });
+
+  numbers.forEach((num, index) => {
+    Object.defineProperty(this, num, {
+      get: () => {
+        initialValue = index;
+        return Number(index);
+      }
+    });
+  });
 };
 
 var Calc = { new: new FluentCalc() };
