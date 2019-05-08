@@ -24,21 +24,29 @@ const recoverSecret = triplets => {
   });
 
   let nextWord = findingNextWord(duplets);
+  // console.log({ nextWord });
   while (nextWord) {
     response += nextWord;
+    // console.log({ responseInWhile: response });
     duplets = duplets.filter(d => d.indexOf(nextWord) === -1);
+    // console.log({ dupletsInWhile: duplets });
     nextWord = findingNextWord(duplets);
+    // console.log({ nextWordInWhile: nextWord });
   }
 
   return response;
 };
 
 // This function return the first letter of the secret
-function findingNextWord(duplets) {
-  let nextWord = duplets.find(d => duplets.every(_d => d[0] !== _d[1]));
-  console.log({ nextWord });
+findingNextWord = duplets => {
+  // Testing the value to return the tested value with  the function every
+  // The method find will return the value tested with the next word of the secret
+  let nextWord = duplets.find(duplet_1 =>
+    duplets.every(duplet_2 => duplet_1[0] !== duplet_2[1])
+  );
+  // console.log({ nextWordInfunction: nextWord });
   return duplets.length > 1 ? nextWord[0] : duplets[0];
-}
+};
 
 // Let's Test the thing
 secret_1 = 'whatisup';
